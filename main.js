@@ -1,4 +1,4 @@
-const slider = document.querySelector('.parent');
+const slider = document.querySelector(".parent");
 let mouseDown = false;
 let startX, scrollLeft;
 
@@ -11,15 +11,27 @@ let stopDragging = function (event) {
   mouseDown = false;
 };
 
-slider.addEventListener('mousemove', (e) => {
+slider.addEventListener("mousemove", (e) => {
   e.preventDefault();
-  if(!mouseDown) { return; }
+  if (!mouseDown) {
+    return;
+  }
   const x = e.pageX - slider.offsetLeft;
   const scroll = x - startX;
   slider.scrollLeft = scrollLeft - scroll;
 });
 
 // Add the event listeners
-slider.addEventListener('mousedown', startDragging, false);
-slider.addEventListener('mouseup', stopDragging, false);
-slider.addEventListener('mouseleave', stopDragging, false);
+slider.addEventListener("mousedown", startDragging, false);
+slider.addEventListener("mouseup", stopDragging, false);
+slider.addEventListener("mouseleave", stopDragging, false);
+
+function toggleNavigation(params) {
+  let x = document.getElementById(params);
+  x.classList.toggle("hidden");
+}
+
+function closeSearch(){
+  let x = document.getElementById('search-mobile');
+  x.classList.add("hidden");
+}
